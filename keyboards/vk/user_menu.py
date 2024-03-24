@@ -19,10 +19,10 @@ keyboard_1 = VkKeyboard(**settings)
 # keyboard_1.add_line()
 # кнопка переключения на 2ое меню
 keyboard_1.add_callback_button(label='Улица Школьная 9', color=VkKeyboardColor.PRIMARY,
-                               payload={"type": "open_link", "link": "https://t.me/NikolayBorozd1n"})
+                               payload={"type": "open_link", "link": "https://t.me/Pantera_Dance1"})
 keyboard_1.add_line()
 keyboard_1.add_callback_button(label='Улица Чугунова 15А', color=VkKeyboardColor.PRIMARY,
-                               payload={"type": "open_link", "link": "https://t.me/NikolayBorozd1n"})
+                               payload={"type": "open_link", "link": "https://t.me/V_pantera"})
 
 
 
