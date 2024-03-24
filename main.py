@@ -47,7 +47,7 @@ async def main():
                         peer_id=event.obj.message['from_id'],
                         keyboard=keyboard_1.get_keyboard(),
                         message='Вас приветствует школа танцев V-Pantera Dance. '
-                                'Выберете наиболее удобную студию ❤️')
+                                'Выберите наиболее удобную студию ❤️')
         # обрабатываем клики по callback кнопкам
         elif event.type == VkBotEventType.MESSAGE_EVENT:
             # если это одно из 3х встроенных действий:
