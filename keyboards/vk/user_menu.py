@@ -18,10 +18,10 @@ keyboard_1 = VkKeyboard(**settings)
 #                                         "hash": "anything_data_100500"})
 # keyboard_1.add_line()
 # кнопка переключения на 2ое меню
-keyboard_1.add_callback_button(label='Школа1', color=VkKeyboardColor.PRIMARY,
+keyboard_1.add_callback_button(label='Улица Школьная 9', color=VkKeyboardColor.PRIMARY,
                                payload={"type": "open_link", "link": "https://t.me/NikolayBorozd1n"})
 keyboard_1.add_line()
-keyboard_1.add_callback_button(label='Школа2', color=VkKeyboardColor.PRIMARY,
+keyboard_1.add_callback_button(label='Улица Чугунова 15А', color=VkKeyboardColor.PRIMARY,
                                payload={"type": "open_link", "link": "https://t.me/NikolayBorozd1n"})
 
 
