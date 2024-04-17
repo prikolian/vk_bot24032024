@@ -4,6 +4,9 @@ import logging
 import vk_api
 from vk_api.utils import get_random_id
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
+import datetime
+
+
 
 from config.config import Config_vk, load_vk_config
 from keyboards.vk.user_menu import keyboard_1, keyboard_2
@@ -27,11 +30,16 @@ async def main():
     vk_session = vk_api.VkApi(token=config_vk.vk_bot.token)
     vk = vk_session.get_api()
     longpoll = VkBotLongPoll(vk_session, config_vk.vk_bot.id_group)
+    last_message_time = {}
 
     for event in longpoll.listen():
         # отправляем меню 1го вида на любое текстовое сообщение от пользователя
         if event.type == VkBotEventType.MESSAGE_NEW:
+            user_id = event.obj.message['from_id']
             if event.obj.message['text'] != '':
+                current_time = datetime.datetime.now()
+                if user_id in last_message_time and (current_time - last_message_time[user_id]).days < 1:
+                    continue
                 if event.from_user:
                     # await send_message(event.message.from_id, 'Привет, я бот!')
 
@@ -42,12 +50,15 @@ async def main():
                         print(f'Клиент {event.obj.message["from_id"]} не поддерж. callback')
 
                     vk.messages.send(
-                        user_id=event.obj.message['from_id'],
-                        random_id=get_random_id(),
+                        user_id=user_id,
+                        current_time=datetime.datetime.now(),
+                        random_id=0,
+                        last_message_time={},
                         peer_id=event.obj.message['from_id'],
                         keyboard=keyboard_1.get_keyboard(),
-                        message='Вас приветствует школа танцев V-Pantera Dance. '
-                                'Выберите наиболее удобную студию ❤️')
+                        message='Вас приветствует Бот школы танцев V-Pantera Dance. '
+                                'Для получения информации выберите наиболее удобную студию ❤️')
+                    last_message_time[user_id] = current_time
         # обрабатываем клики по callback кнопкам
         elif event.type == VkBotEventType.MESSAGE_EVENT:
             # если это одно из 3х встроенных действий:
